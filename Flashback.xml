@@ -5,17 +5,40 @@
       <Anchor point="BOTTOM" relativeTo="GuiRoot" relativePoint="CENTER" offsetY="-20" />
 
       <OnInitialized>
-        FlashbackIndicator:SetHidden(not IsUnitInCombat('player'))
+        --FlashbackIndicator:SetHidden(not IsUnitInCombat('player'))
       </OnInitialized>
 
       <OnMoveStop>
         Flashback.OnIndicatorMoveStop()
+        Flashback.UpdateQuote()
       </OnMoveStop>
 
       <Controls>
-        <Label name="$(parent)Label" width="200" height="25" font="ZoFontWinH1" inheritAlpha="true" color="FF0000"
-            wrapMode="TRUNCATE" verticalAlignment="TOP" horizontalAlignment="CENTER" text="Fighting!">
-          <Anchor point="TOP" relativeTo="$(parent)" relativePoint="TOP" />
+        <Backdrop name="$(parent)BG" inherits="ZO_ThinBackdrop" />
+        <Label name="$(parent)Label" width="200" height="25" font="ZoFontWindowTitle" inheritAlpha="true" color="CFDCBD"
+            wrapMode="ELLIPSIS" verticalAlignment="CENTER" horizontalAlignment="CENTER" text="StatusFighting">
+          <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER" />
+        </Label>
+      </Controls>
+      
+
+    </TopLevelControl>
+
+    <TopLevelControl name="Flashback" mouseEnabled="true" movable="true" clampedToScreen="true">
+      
+      <OnMouseDown>
+        QuoteUpdate()
+      </OnMouseDown>
+
+      <OnMouseDown>
+        QuoteReset()
+      </OnMouseDown>
+ 
+
+      <Controls>
+        <Backdrop name="$(parent)BG2" inherits="ZO_ThinBackdrop" />
+        <Label name="$(parent)Counter" font="ZoFontWindowTitle" color="CFDCBD" wrapMode="ELLIPSIS" verticalAlignment="CENTER" text="Counter: ">
+            <AnchorFill />
         </Label>
       </Controls>
     </TopLevelControl>

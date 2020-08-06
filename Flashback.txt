@@ -3,4 +3,5 @@
 ## SavedVariables: FlashbackSavedVariables
 
 Flashback.xml
+TextList.lua
 Flashback.lua
