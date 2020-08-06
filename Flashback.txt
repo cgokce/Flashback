@@ -1,6 +1,6 @@
-## Title: Flasback
+## Title: Flashback
 ## APIVersion: 100031
-## SavedVariables: FlasbackSavedVariables
+## SavedVariables: FlashbackSavedVariables
 
-Flasback.xml
-Flasback.lua
+Flashback.xml
+Flashback.lua

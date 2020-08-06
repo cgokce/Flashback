@@ -1,41 +1,51 @@
 -- Namespace
-Flasback = {}
+Flashback = {}
  
 -- Single string to hold all data
-Flasback.name = "Flasback"
+Flashback.name = "Flashback"
  
-function Flasback.OnPlayerCombatState(event, inCombat)
+function Flashback.OnPlayerCombatState(event, inCombat)
   -- The ~= operator is "not equal to" in Lua.
-  if inCombat ~= Flasback.inCombat then
+  if inCombat ~= Flashback.inCombat then
     -- The player's state has changed. Update the stored state...
-    Flasback.inCombat = inCombat
+    Flashback.inCombat = inCombat
  
     -- ...and then update the control.
-    FlasbackIndicator:SetHidden(not inCombat)
+    FlashbackIndicator:SetHidden(not inCombat)
   end
 end
 
 
-function Flasback.OnIndicatorMoveStop()
-  Flasback.savedVariables.left = FlasbackIndicator:GetLeft()
-  Flasback.savedVariables.top = FlasbackIndicator:GetTop()
+function Flashback.OnIndicatorMoveStop()
+  Flashback.savedVariables.left = FlashbackIndicator:GetLeft()
+  Flashback.savedVariables.top = FlashbackIndicator:GetTop()
 end
 
-function Flasback:RestorePosition()
+function Flashback:RestorePosition()
   local left = self.savedVariables.left
   local top = self.savedVariables.top
  
-  FlasbackIndicator:ClearAnchors()
-  FlasbackIndicator:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, left, top)
+  FlashbackIndicator:ClearAnchors()
+  FlashbackIndicator:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, left, top)
 end
  
 
-function Flasback:Initialize()
+function Flashback:Initialize()
   self.inCombat = IsUnitInCombat("player")
  
   EVENT_MANAGER:RegisterForEvent(self.name, EVENT_PLAYER_COMBAT_STATE, self.OnPlayerCombatState)
  
-  self.savedVariables = ZO_SavedVars:New("FlasbackSavedVariables", 1, nil, {})
+  self.savedVariables = ZO_SavedVars:New("FlashbackSavedVariables", 1, nil, {})
  
   self:RestorePosition()
 end
+
+function Flashback.OnAddOnLoaded(event, addonName)
+  -- The event fires each time *any* addon loads - but we only care about when our own addon loads.
+  if addonName == Flashback.name then
+    Flashback:Initialize()
+  end
+end
+
+-- Init event
+EVENT_MANAGER:RegisterForEvent(Flashback.name, EVENT_ADD_ON_LOADED, Flashback.OnAddOnLoaded)

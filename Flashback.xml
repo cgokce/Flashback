@@ -1,16 +1,15 @@
 <GuiXml>
   <Controls>
-    <TopLevelControl name="FlasbackIndicator" mouseEnabled="true" movable="true" clampedToScreen="true">
+    <TopLevelControl name="FlashbackIndicator" mouseEnabled="true" movable="true" clampedToScreen="true">
       <Dimensions x="200" y="25" />
       <Anchor point="BOTTOM" relativeTo="GuiRoot" relativePoint="CENTER" offsetY="-20" />
 
       <OnInitialized>
-          -- LUA code here. This is where you'd check to see if the control needs to be hidden or not.
-          FlasbackIndicator:SetHidden(not IsUnitInCombat('player'))
+        FlashbackIndicator:SetHidden(not IsUnitInCombat('player'))
       </OnInitialized>
 
       <OnMoveStop>
-        Flasback.OnIndicatorMoveStop()
+        Flashback.OnIndicatorMoveStop()
       </OnMoveStop>
 
       <Controls>
