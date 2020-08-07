@@ -26,6 +26,7 @@
 
     <TopLevelControl name="Flashback" mouseEnabled="true" movable="true" clampedToScreen="true">
       
+      <Anchor point="BOTTOM" relativeTo="FlashbackIndicator" relativePoint="CENTER" offsetY="+30" />
       <OnMouseDown>
         QuoteUpdate()
       </OnMouseDown>
@@ -37,7 +38,7 @@
 
       <Controls>
         <Backdrop name="$(parent)BG2" inherits="ZO_ThinBackdrop" />
-        <Label name="$(parent)Counter" font="ZoFontWindowTitle" color="CFDCBD" wrapMode="ELLIPSIS" verticalAlignment="CENTER" text="Counter: ">
+        <Label name="$(parent)Author" font="ZoFontWindowTitle" color="CFDCBD" wrapMode="ELLIPSIS" verticalAlignment="CENTER" text="QuoteSource ">
             <AnchorFill />
         </Label>
       </Controls>

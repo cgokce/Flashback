@@ -1,2 +1,7 @@
 - Initial State, Display functionality on the event callback  #2
-- Feature: Data source and random selection #3
+- Feature: Data source and random selection #4
+
+
+TODO:
+Extending the data source
+Second display

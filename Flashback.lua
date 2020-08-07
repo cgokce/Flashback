@@ -26,21 +26,13 @@ function Flashback:RestorePosition()
   FlashbackIndicator:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, left, top)
 end
 
+-- This need to be updated at event callback
+local rand_num = math.random(6)
+
 ---> TEXT UPDATES
 function Flashback:UpdateQuote()
-  local rand_num = math.random(6)
-  FlashbackCounter:SetText(Flashback.QuoteList[rand_num])
-end
-
-local counter = 1
- 
-function QuoteUpdate()
-    FlashbackCounter:SetText(string.format("Counter: %d", counter))
-    counter = counter + 1
-end
-
-function QuoteReset()
-  counter = 0
+  FlashbackIndicatorLabel:SetText(Flashback.QuoteList[rand_num])
+  FlashbackSource:SetText(Flashback.AuthorList[rand_num])
 end
  
 
