@@ -3,11 +3,22 @@ Flashback.name = "Flashback"
  
 ---> Event Callback Reverse State
 function Flashback.OnPlayerCombatState(event, inCombat)
-  -- The ~= operator is "not equal to" in Lua.
+  --Flashback.inCombat = IsUnitDead("player")
+  inCombat = IsUnitDead("player")
+
+  --Debug the event state
+  if inCombat then
+    d("Entering death state.")
+  else
+    d("Exiting death state.")
+  end
+
   if inCombat ~= Flashback.inCombat then
     -- The player's state has changed. Update the stored state...
     Flashback.inCombat = inCombat
- 
+    --Flashback.inCombat = IsUnitDead("player")
+
+
     -- Update visibility
     FlashbackIndicator:SetHidden(not inCombat)
     FlashbackAuthor:SetHidden(not inCombat)
@@ -57,12 +68,18 @@ end
 function Flashback:Initialize()
 
   Flashback:UpdateQuote()
-  self.inCombat = IsUnitInCombat("player")
+  --self.inCombat = IsUnitInCombat("player")
+  self.inCombat = IsUnitDead("player")
 
   -- https://wiki.esoui.com/Events
   -- EVENT_PLAYER_DEAD 
-  EVENT_MANAGER:RegisterForEvent(self.name, EVENT_PLAYER_COMBAT_STATE, self.OnPlayerCombatState)
- 
+  -- EVENT_UNIT_DEATH_STATE_CHANGED -- working when death happens
+  -- EVENT_RESURRECT_RESULT
+  EVENT_MANAGER:RegisterForEvent(self.name, EVENT_UNIT_DEATH_STATE_CHANGED, self.OnPlayerCombatState)
+  EVENT_MANAGER:RegisterForEvent(self.name, EVENT_RESURRECT_RESULT, self.OnPlayerCombatState)
+
+  --EVENT_MANAGER:RegisterForEvent(self.name, EVENT_PLAYER_DEAD, self.OnPlayerCombatState)
+
   self.savedVariables = ZO_SavedVars:New("FlashbackSavedVariables", 1, nil, {})
  
   self:RestorePosition()
