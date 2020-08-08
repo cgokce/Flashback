@@ -1,8 +1,8 @@
 <GuiXml>
   <Controls>
     <TopLevelControl name="FlashbackIndicator" mouseEnabled="true" movable="true" clampedToScreen="true">
-      <Dimensions x="200" y="25" />
-      <Anchor point="BOTTOM" relativeTo="GuiRoot" relativePoint="CENTER" offsetY="-20" />
+      <Dimensions x="1000" y="150" /> 
+      <Anchor point="TOPLEFT" relativeTo="GuiRoot" relativePoint="TOPLEFT" offsetX="536.46" offsetY="76.72" />
 
       <OnInitialized>
         --FlashbackIndicator:SetHidden(not IsUnitInCombat('player'))
@@ -14,31 +14,25 @@
       </OnMoveStop>
 
       <Controls>
-        <Backdrop name="$(parent)BG" inherits="ZO_ThinBackdrop" />
-        <Label name="$(parent)Label" width="200" height="25" font="ZoFontWindowTitle" inheritAlpha="true" color="CFDCBD"
-            wrapMode="ELLIPSIS" verticalAlignment="CENTER" horizontalAlignment="CENTER" text="StatusFighting">
-          <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER" />
+        <!-- <Backdrop name="$(parent)BG" inherits="ZO_ThinBackdrop" /> -->
+        <!-- <Anchor point="CENTER" relativeTo="$(parent)" relativePoint="CENTER" /> -->
+        <Label name="$(parent)Label" height="25" font="ZoFontWindowTitle" inheritAlpha="true" color="CFDCBD"
+            wrapMode="ELLIPSIS" verticalAlignment="BOTTOM" horizontalAlignment="CENTER" text="StatusFighting">
+          <AnchorFill />
         </Label>
       </Controls>
       
 
     </TopLevelControl>
 
-    <TopLevelControl name="Flashback" mouseEnabled="true" movable="true" clampedToScreen="true">
+    <TopLevelControl name="FlashbackAuthor" mouseEnabled="true" movable="true" clampedToScreen="true">
       
-      <Anchor point="BOTTOM" relativeTo="FlashbackIndicator" relativePoint="CENTER" offsetY="+30" />
-      <OnMouseDown>
-        QuoteUpdate()
-      </OnMouseDown>
-
-      <OnMouseDown>
-        QuoteReset()
-      </OnMouseDown>
- 
-
+      <Anchor point="BOTTOM" relativeTo="FlashbackIndicator" relativePoint="RIGHT" offsetY="90" offsetX="-260"/>
+      
       <Controls>
-        <Backdrop name="$(parent)BG2" inherits="ZO_ThinBackdrop" />
-        <Label name="$(parent)Author" font="ZoFontWindowTitle" color="CFDCBD" wrapMode="ELLIPSIS" verticalAlignment="CENTER" text="QuoteSource ">
+        <!--<Backdrop name="$(parent)BG2" inherits="ZO_ThinBackdrop" />-->
+        
+        <Label name="$(parent)Label" font="ZoFontWindowTitle" color="CFDCBD" wrapMode="ELLIPSIS" verticalAlignment="CENTER" text="QuoteSource ">
             <AnchorFill />
         </Label>
       </Controls>

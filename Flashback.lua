@@ -1,6 +1,7 @@
--- Single string to hold all data
+---> Namespace string holding all data
 Flashback.name = "Flashback"
  
+---> Event Callback Reverse State
 function Flashback.OnPlayerCombatState(event, inCombat)
   -- The ~= operator is "not equal to" in Lua.
   if inCombat ~= Flashback.inCombat then
@@ -12,7 +13,7 @@ function Flashback.OnPlayerCombatState(event, inCombat)
   end
 end
 
----> MOVEMENT
+---> Position Save and Restore
 function Flashback.OnIndicatorMoveStop()
   Flashback.savedVariables.left = FlashbackIndicator:GetLeft()
   Flashback.savedVariables.top = FlashbackIndicator:GetTop()
@@ -26,17 +27,22 @@ function Flashback:RestorePosition()
   FlashbackIndicator:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, left, top)
 end
 
--- This need to be updated at event callback
-local rand_num = math.random(6)
-
 ---> TEXT UPDATES
+-- Todo: Move this to the event callback
+
+
 function Flashback:UpdateQuote()
+  local rand_num = math.random(Flashback.QuoteCount)
+  local str_size = string.len(Flashback.QuoteList[rand_num])
+
   FlashbackIndicatorLabel:SetText(Flashback.QuoteList[rand_num])
-  FlashbackSource:SetText(Flashback.AuthorList[rand_num])
+  FlashbackAuthorLabel:SetText("- " .. Flashback.AuthorList[rand_num])
 end
  
-
+---> OnAddonLoad Callback
 function Flashback:Initialize()
+
+  Flashback:UpdateQuote()
   self.inCombat = IsUnitInCombat("player")
 
   -- https://wiki.esoui.com/Events
@@ -46,6 +52,9 @@ function Flashback:Initialize()
   self.savedVariables = ZO_SavedVars:New("FlashbackSavedVariables", 1, nil, {})
  
   self:RestorePosition()
+  
+  -- Show coordinates
+  -- FlashbackIndicatorLabel:SetText(self.savedVariables.left .. " " .. self.savedVariables.top)
 end
 
 function Flashback.OnAddOnLoaded(event, addonName)

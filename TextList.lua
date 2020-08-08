@@ -1,6 +1,9 @@
 -- Namespace
 Flashback = {}
 
+--> Count of quotes
+Flashback.QuoteCount = 70
+
 Flashback.QuoteList ={
     -- From Call of Duty Games
     [1] = "Never in the field of human conflict was so much owed by so many to so few.",
@@ -104,7 +107,7 @@ Flashback.AuthorList = {
     [26] = "H. G. Wells",
     [27] = "Edvard Munch",
     [28] = "Ali ibn-Abi-Talib",
-    [29] = "George Gordon Byron, The Destruction of Sennacherib",
+    [29] = "George Gordon Byron",
     [30] = "Ernest Hemingway",
     [31] = "General William Tecumseh Sherman",
     [32] = "Thomas Jefferson",
@@ -121,8 +124,8 @@ Flashback.AuthorList = {
     [43] = "General George S. Patton",
     [44] = "General George S. Patton",
     [45] = "General George S. Patton",
-    [46] = "William Shakespeare, King Henry V",
-    [47] = "William Shakespeare, Julius Caesar",
+    [46] = "William Shakespeare",
+    [47] = "William Shakespeare",
     [48] = "Napoleon Bonaparte",
     [49] = "Napoleon Bonaparte",
     [50] = "Thomas A. Edison",
@@ -141,7 +144,7 @@ Flashback.AuthorList = {
     [63] = "Unknown",
     [64] = "John F. Kennedy",
     [65] = "Bertrand Russell",
-    [66] = "Admiral David D. Porter, USN",
+    [66] = "Admiral David D. Porter",
     [67] = "Nikita Khrushchev",
     [68] = "Nikita Khrushchev",
     [69] = "Infantry Journal",
