@@ -9,6 +9,8 @@ function Flashback.OnPlayerCombatState(event, inCombat)
   --Debug the event state
   if inCombat then
     d("Entering death state.")
+    d(self.savedVariables.left==nil)
+    --d(self.savedVariables.top)
   else
     d("Exiting death state.")
   end
@@ -34,7 +36,12 @@ end
 function Flashback:RestorePosition()
   local left = self.savedVariables.left
   local top = self.savedVariables.top
- 
+
+  if left == nil then
+    left = 507
+    top = 126
+  end
+
   FlashbackIndicator:ClearAnchors()
   FlashbackIndicator:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, left, top)
 end
@@ -84,6 +91,8 @@ function Flashback:Initialize()
  
   self:RestorePosition()
   
+  --FlashbackIndicator:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, 507, 126)
+
   -- Show coordinates
   -- FlashbackIndicatorLabel:SetText(self.savedVariables.left .. " " .. self.savedVariables.top)
 end

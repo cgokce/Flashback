@@ -2,10 +2,10 @@
   <Controls>
     <TopLevelControl name="FlashbackIndicator" mouseEnabled="true" movable="true" clampedToScreen="true">
       <Dimensions x="1000" y="150" /> 
-      <Anchor point="TOPLEFT" relativeTo="GuiRoot" relativePoint="TOPLEFT" offsetX="536.46" offsetY="76.72" />
+      <Anchor point="TOPLEFT" relativeTo="GuiRoot" relativePoint="TOPLEFT" offsetX="507" offsetY="126" />
 
       <OnInitialized>
-        FlashbackIndicator:SetHidden(not IsUnitDead('player'))
+        --FlashbackIndicator:SetHidden(not IsUnitDead('player'))
       </OnInitialized>
 
       <OnMoveStop>
