@@ -8,8 +8,9 @@ function Flashback.OnPlayerCombatState(event, inCombat)
     -- The player's state has changed. Update the stored state...
     Flashback.inCombat = inCombat
  
-    -- ...and then update the control.
+    -- Update visibility
     FlashbackIndicator:SetHidden(not inCombat)
+    FlashbackAuthor:SetHidden(not inCombat)
   end
 end
 
@@ -27,16 +28,29 @@ function Flashback:RestorePosition()
   FlashbackIndicator:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, left, top)
 end
 
----> TEXT UPDATES
--- Todo: Move this to the event callback
-
 
 function Flashback:UpdateQuote()
   local rand_num = math.random(Flashback.QuoteCount)
-  local str_size = string.len(Flashback.QuoteList[rand_num])
+  local str_size = 20/string.len(Flashback.QuoteList[rand_num])  
 
+  -- Scaling, low cost but blurry
+  -- FlashbackIndicatorLabel:SetScale(1+str_size)
+  -- FlashbackAuthorLabel:SetScale(1+str_size)
+  
+  --FlashbackIndicatorLabel:SetText( str_size .. Flashback.QuoteList[rand_num])
   FlashbackIndicatorLabel:SetText(Flashback.QuoteList[rand_num])
   FlashbackAuthorLabel:SetText("- " .. Flashback.AuthorList[rand_num])
+
+  local path = "EsoUI/Common/Fonts/univers67.otf"
+  local outline = "soft-shadow-thin"
+ 
+  FlashbackIndicatorLabel:SetFont(path .. "|" .. 30+10*str_size .. "|" ..  outline)
+  FlashbackAuthorLabel:SetFont(path .. "|" .. 30+10*str_size .. "|" ..  outline)
+  
+  -- Also move author maybe later add as feature
+  --local author_size = 20/string.len(Flashback.AuthorList[rand_num])
+  --FlashbackAuthor.SetSimpleAnchor(FlashbackIndicator,10,-500)
+
 end
  
 ---> OnAddonLoad Callback
