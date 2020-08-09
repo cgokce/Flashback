@@ -6,6 +6,12 @@ function Flashback.OnPlayerCombatState(event, inCombat)
   --Flashback.inCombat = IsUnitDead("player")
   inCombat = IsUnitDead("player")
 
+  -- Still investigating to find death recap toggle keybind
+  d(SI_DEATH_RECAP_TOGGLE_KEYBIND)
+
+  -- Also changing the recap text if possible
+  d(SI_DEATH_RECAP_HINTS_HEADER)
+
   --Debug the event state
   if inCombat then
     d("Entering death state.")

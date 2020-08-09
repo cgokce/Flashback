@@ -1,4 +1,5 @@
-## Title: Flashback
+## Title: |cFFD700Flashback|r
+## Author: |c006699ArnoDor|r
 ## APIVersion: 100031
 ## SavedVariables: FlashbackSavedVariables
 
